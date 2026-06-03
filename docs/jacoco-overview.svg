@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="200" viewBox="0 0 800 200">
+  <rect width="800" height="200" fill="#ffffff"/>
+  <text x="20" y="30" font-size="18" font-family="Arial" fill="#222">JaCoCo Coverage - Package: com.unisabana.domain</text>
+  <g transform="translate(20,50)">
+    <rect x="0" y="0" width="600" height="24" fill="#e0e0e0" stroke="#ccc"/>
+    <rect x="0" y="0" width="525" height="24" fill="#4caf50"/>
+    <text x="610" y="18" font-size="14" font-family="Arial" fill="#222">Lines covered: 79 / 93 (≈85%)</text>
+  </g>
+  <g transform="translate(20,100)">
+    <rect x="0" y="0" width="600" height="24" fill="#e0e0e0" stroke="#ccc"/>
+    <rect x="0" y="0" width="525" height="24" fill="#2196f3"/>
+    <text x="610" y="18" font-size="14" font-family="Arial" fill="#222">Instructions covered: 287 / 328 (≈87.5%)</text>
+  </g>
+  <text x="20" y="170" font-size="12" font-family="Arial" fill="#666">Generated: target/site/jacoco/index.html (snapshot)</text>
+</svg>

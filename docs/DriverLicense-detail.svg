@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="260" viewBox="0 0 900 260">
+  <rect width="900" height="260" fill="#ffffff"/>
+  <text x="20" y="28" font-size="18" font-family="Arial" fill="#222">JaCoCo - DriverLicense.java (detalle)</text>
+  <text x="20" y="52" font-size="12" font-family="Arial" fill="#444">Resumen: Líneas cubiertas 79, líneas no cubiertas 14</text>
+  <g transform="translate(20,80)">
+    <!-- simulated source with red/green markers -->
+    <rect x="0" y="0" width="820" height="140" fill="#f8f8f8" stroke="#ddd"/>
+    <!-- covered lines (green blocks) -->
+    <rect x="10" y="10" width="760" height="8" fill="#e8f5e9"/>
+    <rect x="10" y="28" width="760" height="8" fill="#e8f5e9"/>
+    <rect x="10" y="46" width="760" height="8" fill="#e8f5e9"/>
+    <!-- uncovered snippets (red small blocks) -->
+    <rect x="20" y="76" width="140" height="6" fill="#ffebee"/>
+    <rect x="180" y="76" width="90" height="6" fill="#ffebee"/>
+    <rect x="290" y="76" width="60" height="6" fill="#ffebee"/>
+    <rect x="370" y="76" width="120" height="6" fill="#ffebee"/>
+    <rect x="500" y="76" width="60" height="6" fill="#ffebee"/>
+    <text x="10" y="128" font-size="12" font-family="Arial" fill="#666">Notas: las áreas en rojo representan ramas/no cubiertas identificadas por JaCoCo.</text>
+  </g>
+</svg>
