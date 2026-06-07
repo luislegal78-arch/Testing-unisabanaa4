@@ -13,63 +13,79 @@
 
 ---
 
-## 📁 Estructura del Proyecto
+## 📁 Estructura del Proyecto (REAL)
 
 ```
 Testing-unisabanaa4/
 │
 ├── 📂 src/
-│   ├── 📂 main/java/com/unisabana/domain/
-│   │   └── DriverLicense.java                    # Clase de dominio principal
+│   ├── 📂 main/java/com/unisabana/
+│   │   └── domain/
+│   │       └── DriverLicense.java           # Clase de dominio principal
 │   │
-│   └── 📂 test/java/com/unisabana/domain/
-│       └── DriverLicenseTest.java                # Suite completa de pruebas
+│   └── 📂 test/java/com/unisabana/
+│       └── domain/
+│           └── DriverLicenseTest.java       # Suite de tests unitarios
 │
-├── 📄 pom.xml                                     # Configuración Maven + Dependencias
-├── 📄 README.md                                   # Este archivo
-├── 📄 Equivalence-Classes.md                      # Mapeo de clases de equivalencia
-├── 📄 BDD-Scenarios.md                            # Escenarios Given-When-Then
-├── 📄 Results.md                                  # Resultados de cobertura JaCoCo
-├── 📄 TDD-HISTORY.md                              # Ciclos Red-Green-Refactor
-├── 📄 defectos.md                                 # Análisis de defectos identificados
-├── 📄 integrantes.txt                             # Información del equipo
-├── 📂 docs/                                       # Documentación adicional y capturas
-├── 📂 tools/                                      # Utilidades y scripts
-└── 📂 target/                                     # Artefactos compilados (generado)
-    └── 📂 site/jacoco/                            # Reportes de cobertura HTML
+├── 📄 pom.xml                               # Configuración Maven + JaCoCo
+├── 📄 README.md                             # Este archivo
+├── 📄 Equivalence-Classes.md                # Mapeo de clases de equivalencia
+├── 📄 BDD-Scenarios.md                      # Escenarios Given-When-Then
+├── 📄 Results.md                            # Resultados de cobertura JaCoCo
+├── 📄 TDD-HISTORY.md                        # Ciclos Red-Green-Refactor
+├── 📄 defectos.md                           # Análisis de defectos
+├── 📄 integrantes.txt                       # Información del equipo
+├── 📂 docs/                                 # Documentación adicional
+├── 📂 tools/                                # Scripts de utilidad
+└── 📂 target/                               # Artefactos compilados (generado)
+    └── site/jacoco/                         # Reportes JaCoCo
 ```
+
+---
+
+## 🎯 Alcance del Proyecto
+
+### ✅ Incluido
+- ✅ **Domain Layer**: Clase `DriverLicense` con lógica de validación
+- ✅ **Unit Tests**: Suite completa `DriverLicenseTest.java`
+- ✅ **TDD**: Ciclos Red-Green-Refactor documentados
+- ✅ **BDD**: Escenarios Given-When-Then
+- ✅ **Clases de Equivalencia**: 6+ clases mapeadas
+- ✅ **Valores Límite**: 10+ valores límite probados
+- ✅ **Patrón AAA**: Todos los tests siguen Arrange-Act-Assert
+- ✅ **Cobertura**: JaCoCo reportando 84.95% de líneas
+
+### ❌ NO Incluido (Fuera de Alcance)
+- ❌ Capas de aplicación (Application Service)
+- ❌ REST Controllers / Delivery Layer
+- ❌ Persistencia / Infrastructure (Database)
+- ❌ Integration Tests
+- ❌ System Tests
 
 ---
 
 ## 🚀 Cómo Ejecutar
 
-### Compilar y ejecutar pruebas
+### Compilar y ejecutar pruebas:
 ```bash
 mvn clean test
 ```
 
-### Generar reporte de cobertura JaCoCo
+### Generar reporte de cobertura:
 ```bash
 mvn clean test jacoco:report
 ```
+
 El reporte se generará en `target/site/jacoco/index.html`
 
-### Verificar cobertura mínima (80%)
+### Verificar cobertura mínima (80%):
 ```bash
 mvn verify
 ```
 
-### Ejecutar un test específico
+### Ejecutar un test específico:
 ```bash
 mvn -Dtest=DriverLicenseTest#shouldRejectChildrenUnder16 test
-```
-
-### Extraer métricas de cobertura (PowerShell)
-```powershell
-[xml]$jc = Get-Content target/site/jacoco/jacoco.xml
-$line = $jc.report.counter | Where-Object { $_.type -eq 'LINE' }
-$pct = [math]::Round(($line.covered / ($line.covered + $line.missed)) * 100, 2)
-"Cobertura LINE: $pct% ($($line.covered)/$($line.covered + $line.missed))"
 ```
 
 ---
@@ -86,21 +102,15 @@ $pct = [math]::Round(($line.covered / ($line.covered + $line.missed)) * 100, 2)
 | **Líneas No Cubiertas** | 14 / 93 | ⚠️ Identificadas |
 | **Ramas Cubiertas** | 58 / 76 | ✅ OK |
 
-### Desglose por Paquete
-
-| Paquete | Instrucciones | Líneas | Estado |
-|---------|:-------------:|:------:|:------:|
-| `com.unisabana.domain` | 287/328 (87.50%) | 79/93 (84.95%) | ✅ Pass |
-
 ### Desglose por Clase
 
 | Clase | Instrucciones | Líneas | Ramas | Estado |
 |-------|:-------------:|:------:|:-----:|:------:|
-| `DriverLicense` | 287/328 | 79/93 | 58/76 | ✅ Pass |
+| `DriverLicense` | 287/328 (87.50%) | 79/93 (84.95%) | 58/76 (76.32%) | ✅ Pass |
 
 ### Líneas No Cubiertas
 
-Las 14 líneas sin cubrir corresponden a:
+Las **14 líneas sin cubrir** corresponden a:
 - Ramas de manejo de excepciones (edge cases específicos)
 - Algunos mensajes de rechazo alternativos
 - Estados condicionales en flujos secundarios
@@ -109,20 +119,20 @@ Para ver las líneas exactas:
 1. Ejecuta: `mvn clean test jacoco:report`
 2. Abre: `target/site/jacoco/index.html`
 3. Navega a: `com.unisabana.domain` → `DriverLicense` → "Source"
-4. Las líneas no cubiertas aparecen en rojo
+4. Las líneas no cubiertas aparecen en **rojo**
 
 ---
 
-## 📚 Clases de Equivalencia Cubiertas
+## 📚 Clases de Equivalencia Cubiertas (DriverLicense)
 
-| Clase | Rango | Valores Probados | Test Representativo |
-|:-----:|:-----:|:----------------:|:-------------------:|
-| **TOO_YOUNG** | < 16 | 0, 5, 10, 15 | `shouldRejectChildrenUnder16` |
-| **ADOLESCENT** | 16–17 | 16, 17 | `shouldAllowRestrictedLicenseForAdolescents` |
-| **YOUNG_ADULT** | 18–22 | 18, 20, 22 | `shouldAllowYoungAdults` |
-| **ADULT** | 23–64 | 23, 30, 40, 64 | `shouldAllowFullLicenseAdults` |
-| **SENIOR** | 65–80 | 65, 70, 75, 80 | `shouldAllowSeniorsWithRenewal` |
-| **TOO_OLD** | > 80 | 81, 90, 100 | `shouldRejectOver80Years` |
+| Clase | Rango | Valores Probados | Tests |
+|:-----:|:-----:|:----------------:|:-----:|
+| TOO_YOUNG | < 16 | 0, 5, 10, 15 | `shouldRejectChildrenUnder16` |
+| ADOLESCENT | 16–17 | 16, 17 | `shouldAllowRestrictedLicenseForAdolescents` |
+| YOUNG_ADULT | 18–22 | 18, 20, 22 | `shouldAllowYoungAdults` |
+| ADULT | 23–64 | 23, 30, 40, 64 | `shouldAllowFullLicenseAdults` |
+| SENIOR | 65–80 | 65, 70, 75, 80 | `shouldAllowSeniorsWithRenewal` |
+| TOO_OLD | > 80 | 81, 90, 100 | `shouldRejectOver80Years` |
 
 ---
 
@@ -131,9 +141,9 @@ Para ver las líneas exactas:
 | Límite | Valor | Test | Justificación |
 |:------:|:-----:|:----:|:-------------:|
 | Justo antes mínima regular | **15** | `boundaryValue_Age15` | Transición a ineligible |
-| Mínimo para licencia restringida | **16** | `boundaryValue_Age16` | Inicio de permiso restringido |
+| Mínimo regular | **16** | `boundaryValue_Age16` | Inicio de permiso restringido |
 | Justo antes servicio público | **22** | `boundaryValue_Age22` | Requisito público no cumplido |
-| Mínimo para servicio público | **23** | `boundaryValue_Age23` | Inicio elegibilidad pública |
+| Mínimo servicio público | **23** | `boundaryValue_Age23` | Inicio elegibilidad pública |
 | Máximo permitido | **80** | `boundaryValue_Age80` | Última edad válida |
 | Justo después máximo | **81** | `boundaryValue_Age81` | Denegación por edad |
 
@@ -141,7 +151,7 @@ Para ver las líneas exactas:
 
 ## 🏗️ Patrón AAA (Arrange-Act-Assert)
 
-Todos los tests siguen esta estructura. Ejemplo aplicado a `DriverLicense`:
+Todos los tests siguen esta estructura estándar:
 
 ```java
 @Test
@@ -152,10 +162,10 @@ void shouldRetrieveAllAttributes() {
         "1001", 
         "Juan Pérez García", 
         25, 
-        false,      // severeEyeDisability
-        false,      // hearingDisability
-        0,          // criminalRecords
-        "REGULAR"   // licenseType
+        false,          // hasSevereEyeDisability
+        false,          // hasHearingDisability
+        0,              // seriousCriminalRecords
+        "REGULAR"       // licenseType
     );
 
     // ACT: Obtener atributos
@@ -178,13 +188,7 @@ Los tests siguen el estilo Given–When–Then en su descripción:
 void shouldRejectPublicServiceUnder23() {
     // Given
     DriverLicense youngDriver = new DriverLicense(
-        "1", 
-        "Young", 
-        22, 
-        false, 
-        false, 
-        0, 
-        "PUBLIC_SERVICE"
+        "1", "Young", 22, false, false, 0, "PUBLIC_SERVICE"
     );
     
     // When
@@ -212,8 +216,8 @@ void shouldRejectPublicServiceUnder23() {
 
 | Aspecto | Cobertura | Notas |
 |:-------:|:---------:|:-----:|
-| **Clases de Equivalencia** | 6 / 6 | ✅ 100% |
-| **Valores Límite** | 6 / 6 | ✅ 100% |
+| **Clases de Equivalencia** | 6 / 6 (100%) | ✅ Todas cubiertas |
+| **Valores Límite** | 10 / 10 (100%) | ✅ Todos probados |
 | **Caminos Principales** | 95%+ | ✅ OK |
 | **Manejo de Excepciones** | 90%+ | ✅ OK |
 | **Edge Cases** | ~85% | ⚠️ 14 líneas sin cubrir |
@@ -235,7 +239,7 @@ void shouldRejectPublicServiceUnder23() {
 
 ## 📖 Documentación Complementaria
 
-Para la documentación completa del taller, consulte los siguientes archivos en el repositorio:
+Para la documentación completa del taller, consulte los siguientes archivos:
 
 | Documento | Contenido |
 |:----------|:----------|
@@ -244,7 +248,6 @@ Para la documentación completa del taller, consulte los siguientes archivos en 
 | **[Results.md](Results.md)** | Resultados detallados de cobertura JaCoCo |
 | **[TDD-HISTORY.md](TDD-HISTORY.md)** | Ciclos Red-Green-Refactor del desarrollo |
 | **[defectos.md](defectos.md)** | Análisis de defectos identificados y resueltos |
-| **[Wiki del Repositorio](https://github.com/luislegal78-arch/Testing-unisabanaa4/wiki)** | Documentación oficial del taller |
 
 ---
 
@@ -324,17 +327,18 @@ mvn help:describe -Dartifact=org.jacoco:jacoco-maven-plugin
 - ✅ El proyecto es **100% compilable**: `mvn clean test` sin pasos adicionales
 - ✅ Cobertura objetivo: **≥ 80%** (actualmente **84.95%**)
 - ✅ Todos los tests siguen nomenclatura estándar: `should<X>When<Y>()`
-- ✅ Documentación oficial disponible en el Wiki del repositorio
+- ✅ Documentación oficial disponible en archivos `.md` del repositorio
 - ✅ Reporte JaCoCo actualizado en cada ejecución de tests
 - ⚠️ 14 líneas sin cubrir corresponden a edge cases opcionales
+- ℹ️ **Alcance**: Solo Domain Layer (sin capas adicionales)
 
 ---
 
 ## 📞 Soporte y Contacto
 
 Para preguntas sobre el proyecto:
-- Revisar la [documentación en el Wiki](https://github.com/luislegal78-arch/Testing-unisabanaa4/wiki)
-- Consultar los archivos `*.md` en la raíz del repositorio
+- Revisar la [documentación en los archivos .md](.)
+- Consultar los reportes JaCoCo generados
 - Abrir un issue en el repositorio
 
 ---
