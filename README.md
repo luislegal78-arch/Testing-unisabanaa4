@@ -13,19 +13,21 @@
 
 ---
 
-## 📁 Estructura del Proyecto (REAL)
+## 📁 Estructura del Proyecto
 
 ```
 Testing-unisabanaa4/
 │
 ├── 📂 src/
-│   ├── 📂 main/java/com/unisabana/
-│   │   └── domain/
-│   │       └── DriverLicense.java           # Clase de dominio principal
+│   ├── 📂 main/
+│   │   └── 📂 java/com/unisabana/
+│   │       └── domain/
+│   │           └── DriverLicense.java           # Clase de dominio principal
 │   │
-│   └── 📂 test/java/com/unisabana/
-│       └── domain/
-│           └── DriverLicenseTest.java       # Suite de tests unitarios
+│   └── 📂 test/
+│       └── 📂 java/com/unisabana/
+│           └── domain/
+│               └── DriverLicenseTest.java       # Suite de tests unitarios
 │
 ├── 📄 pom.xml                               # Configuración Maven + JaCoCo
 ├── 📄 README.md                             # Este archivo
@@ -40,8 +42,6 @@ Testing-unisabanaa4/
 └── 📂 target/                               # Artefactos compilados (generado)
     └── site/jacoco/                         # Reportes JaCoCo
 ```
-
----
 
 ## 🎯 Alcance del Proyecto
 
@@ -123,7 +123,7 @@ Para ver las líneas exactas:
 
 ---
 
-## 📚 Clases de Equivalencia Cubiertas (DriverLicense)
+## 📚 Clases de Equivalencia Cubiertas
 
 | Clase | Rango | Valores Probados | Tests |
 |:-----:|:-----:|:----------------:|:-----:|
@@ -209,6 +209,42 @@ void shouldRejectPublicServiceUnder23() {
 | Solicitante 70 años | Solicita renovación | ⚠️ Verificación médica requerida |
 | Discapacidad visual severa | Solicita licencia | ❌ Rechazado |
 | Antecedentes penales ≥1 | Solicita licencia | ❌ Rechazado |
+
+---
+
+## 📖 TDD: Red-Green-Refactor
+
+### Ciclo 1: Validación de Edad Mínima
+- **RED**: Test falla - no existe validación
+- **GREEN**: Implementar `isEligibleForLicense()` básico
+- **REFACTOR**: Extraer constantes y crear helpers
+
+### Ciclo 2: Licencia de Servicio Público
+- **RED**: Test falla para edad < 23
+- **GREEN**: Implementar validación por tipo de licencia
+- **REFACTOR**: Consolidar lógica de edad
+
+### Ciclo 3: Persistencia de Razón de Rechazo
+- **RED**: Test espera `getRejectionReason()` almacenado
+- **GREEN**: Añadir campo `rejectionReason`
+- **REFACTOR**: Validación y valores por defecto
+
+👉 **Documentación completa**: Ver [TDD-HISTORY.md](TDD-HISTORY.md)
+
+---
+
+## 🐛 Defectos Identificados y Resueltos
+
+| ID | Descripción | Estado | Severidad | Test |
+|:--:|:------------|:------:|:---------:|:----:|
+| DEF-001 | Edad negativa | ✅ CERRADO | ALTA | `shouldThrowExceptionWhenAgeIsNegative` |
+| DEF-002 | Edad > 120 | ✅ CERRADO | MEDIA | `shouldThrowExceptionWhenAgeExceedsMaximum` |
+| DEF-003 | Estado civil vacío | ✅ CERRADO | MEDIA | `shouldThrowExceptionWhenMaritalStatusIsEmpty` |
+| DEF-004 | Estado civil inválido | ✅ CERRADO | MEDIA | `shouldThrowExceptionWhenMaritalStatusIsInvalid` |
+| DEF-005 | Marcar muerto 2x | ✅ CERRADO | BAJA | `shouldThrowExceptionWhenMarkingDeceasedTwice` |
+| DEF-006 | Razón rechazo no persiste | ✅ CERRADO | BAJA | `shouldStoreRejectionReasonWhenRejected` |
+
+👉 **Análisis detallado**: Ver [defectos.md](defectos.md)
 
 ---
 
